@@ -1,53 +1,89 @@
-# ARCHNEMESIS on Sway
+<div align="center">
 
-A modular Sway setup built around the same applications and daily controls as the ARCHNEMESIS Hyprland and MangoWC sessions, while keeping Sway's split-tree window model.
+# ARCHNEMESIS · Sway
 
----
+**A familiar desktop, built around Sway’s split-tree workflow.**
 
-## What’s here
+Rosé Pine colors · compact gaps · Kitty · Helium · Dolphin · Rofi · Waybar
 
-- `config` — Sway entry point
-- `modules/` — appearance, input, applications, startup, and keybindings
-- `scripts/` — session helpers for startup, layout status, locking, power, and wallpaper
-- `waybar.jsonc` and `waybar.css` — Sway-specific bar and Rosé Pine styling
+<img src="screenshots/layout-split.png" alt="ARCHNEMESIS Sway desktop with its split layout and Waybar" width="100%">
 
-Sway supports horizontal and vertical splits, tabbed containers, and stacked containers. **Super+L** cycles the focused container through those layouts. The Waybar layout label reads the focused container’s active layout.
+</div>
 
 ---
 
-## Main controls
+## Install
+
+On a fresh setup, clone directly into Sway’s config directory:
+
+```sh
+git clone git@github.com:nihitdev/sway-config.git ~/.config/sway
+```
+
+Then select Sway from your display manager. The config does not change your login manager.
+
+---
+
+## See Sway’s layouts
+
+Press **Super+L** to cycle the focused container through horizontal split, vertical split, tabbed, and stacked. The Waybar label shows the current container layout.
+
+<details>
+<summary>Tabbed layout</summary>
+<br>
+<img src="screenshots/layout-tabbed.png" alt="Sway tabbed container with the active layout shown in Waybar" width="100%">
+</details>
+
+<details>
+<summary>Stacked layout</summary>
+<br>
+<img src="screenshots/layout-stacking.png" alt="Sway stacked container with the active layout shown in Waybar" width="100%">
+</details>
+
+<details>
+<summary>Neovim start screen</summary>
+<br>
+<img src="screenshots/neovim-start.png" alt="Kitty running Neovim without opening a file" width="100%">
+</details>
+
+---
+
+## Daily controls
 
 | Keys | Action |
 | --- | --- |
 | Super+Return / B / E / Space | Kitty / Helium / Dolphin / Rofi launcher |
 | Super+G / N | Kdenlive / Kitty with Neovim |
 | Super+W | Close focused window |
-| Super+H/J/K and arrows | Move focus |
+| Super+H/J/K and arrows | Directional focus |
 | Super+L | Cycle Sway layouts |
 | Super+1…0 | Switch workspaces 1–10 |
-| Super+Shift+1…0 | Move the focused container to a workspace |
+| Super+Shift+1…0 | Move focused container to a workspace |
 | Super+S / Super+Shift+S | Show scratchpad / send container to scratchpad |
 | Super+V | Rofi clipboard history |
 | Alt+Z or Print / Shift+Print | Region / full screenshot |
 | Super+Alt+Space / Super+Alt+L | Wallpaper picker / lock |
-| Volume, brightness, media keys | `wpctl`, `brightnessctl`, and `playerctl` |
+| Volume, brightness, media keys | `wpctl`, `brightnessctl`, `playerctl` |
 
 ---
 
-## Install
+## Layout
 
-Copy this directory’s contents into `~/.config/sway/`, then validate the config with:
-
-```sh
-sway --validate --config ~/.config/sway/config
+```text
+config                 Sway entry point
+modules/               bindings, input, appearance, apps, startup
+scripts/               layout label, wallpaper, lock, power, startup
+waybar.jsonc           Sway-specific modules
+waybar.css             Rosé Pine styling
+screenshots/            Desktop and workflow previews
 ```
 
-Select Sway from your display manager to start the session. This repository does not configure the display manager.
+The Waybar workspace buttons show the five persistent workspaces. Sway itself uses a split tree: **Super+L** changes the focused container’s layout rather than switching between compositor-wide layout engines.
 
 ---
 
-## Existing dependencies
+## Existing tools
 
-The config expects the user's existing Kitty, Helium, Dolphin, Rofi, Waybar, SwayNC, cliphist, wallpaper collection, and helper programs. Screenshot and lock helpers reuse files from `~/.config/hypr/`; they are intentionally not copied or modified here. Check the scripts before use if those shared files are not installed.
+This config reuses Kitty, Helium, Dolphin, Rofi, Waybar, SwayNC, cliphist, and the existing wallpaper collection. The screenshot and lock scripts use shared helpers from `~/.config/hypr/`; those files are not copied here. Required programs and themes are not installed by this repo.
 
-Sway itself does not provide rounded window corners, blur, or compositor animations. Waybar has rounded styling; window borders and gaps use Sway's native options.
+Sway provides square window borders and no compositor blur or animated transitions. The bar and its controls use rounded styling; window gaps, borders, and colors use Sway’s native options.

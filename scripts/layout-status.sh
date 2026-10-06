@@ -17,6 +17,6 @@ case "$layout" in
     splith)   printf 'Horizontal Split\n' ;;
     splitv)   printf 'Vertical Split\n' ;;
     tabbed)   printf 'Tabbed\n' ;;
-    stacking) printf 'Stacking\n' ;;
+    stacked|stacking) printf 'Stacking\n' ;;
     *)        printf '%s\n' "$layout" ;;
 esac
