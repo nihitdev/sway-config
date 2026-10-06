@@ -2,6 +2,9 @@
 set -euo pipefail
 
 wall_dir="$HOME/Pictures/Wallpapers/CozyPixels/Catppuccin/Space & Cosmic"
+if [[ ! -d "$wall_dir" ]]; then
+    wall_dir="$HOME/.config/sway/wallpapers"
+fi
 current="$HOME/.config/sway/current-wallpaper"
 theme="$HOME/.config/rofi/wallpaper/wallpaper.rasi"
 

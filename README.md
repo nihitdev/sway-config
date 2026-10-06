@@ -14,13 +14,19 @@ Rosé Pine colors · compact gaps · Kitty · Helium · Dolphin · Rofi · Wayba
 
 ## Install
 
-On a fresh setup, clone directly into Sway’s config directory:
+Clone the repository and run the installer:
 
 ```sh
-git clone git@github.com:nihitdev/sway-config.git ~/.config/sway
+git clone git@github.com:nihitdev/sway-config.git ~/Projects/sway-config
+cd ~/Projects/sway-config
+./install.sh
 ```
 
-Then select Sway from your display manager. The config does not change your login manager.
+The installer checks and offers to install missing Arch packages, then copies the Sway files into `~/.config/sway`. It asks before proceeding, does not make backups, and leaves an existing `current-wallpaper` choice intact. Use `./install.sh --check` to check requirements without changing anything. The optional `--yes` flag skips the install confirmation.
+
+Helium is installed through `yay` or `paru` when available; without either helper, install it separately. The setup also expects the existing Rofi themes and launcher scripts, Waybar art/TUI helpers, Hyprland screenshot script, Hyprlock template, and battery-guardian helper. The installer reports missing shared files and does not replace them.
+
+Then select Sway from your display manager. The installer does not change your login manager or other compositor/application configs.
 
 ---
 
@@ -76,14 +82,24 @@ scripts/               layout label, wallpaper, lock, power, startup
 waybar.jsonc           Sway-specific modules
 waybar.css             Rosé Pine styling
 screenshots/            Desktop and workflow previews
+wallpapers/default.png  Bundled first-run wallpaper
+install.sh              Arch package check and Sway config installer
 ```
 
 The Waybar workspace buttons show the five persistent workspaces. Sway itself uses a split tree: **Super+L** changes the focused container’s layout rather than switching between compositor-wide layout engines.
 
 ---
 
-## Existing tools
+## Wallpaper credit
 
-This config reuses Kitty, Helium, Dolphin, Rofi, Waybar, SwayNC, cliphist, and the existing wallpaper collection. The screenshot and lock scripts use shared helpers from `~/.config/hypr/`; those files are not copied here. Required programs and themes are not installed by this repo.
+The bundled default is `satellite.png` from [CozyPixels](https://github.com/SleepyCatHey/CozyPixels), under its included [MIT license](wallpapers/COZYPIXELS-LICENSE). The wallpaper picker uses the existing CozyPixels folder when present and falls back to the bundled wallpaper directory.
+
+<details>
+<summary>Preview the bundled wallpaper</summary>
+<br>
+<img src="wallpapers/default.png" alt="Bundled dark Catppuccin satellite wallpaper" width="100%">
+</details>
+
+This config reuses Kitty, Helium, Dolphin, Rofi, Waybar, SwayNC, and cliphist. The screenshot and lock scripts use shared helpers from `~/.config/hypr/`; they are not copied here. The installer reports these shared requirements and leaves them unchanged.
 
 Sway provides square window borders and no compositor blur or animated transitions. The bar and its controls use rounded styling; window gaps, borders, and colors use Sway’s native options.
